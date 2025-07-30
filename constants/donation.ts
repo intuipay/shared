@@ -1,7 +1,8 @@
 export enum DonationStatus {
   Pending = 1,
-  Completed = 2,
-  Failed = 3,
-  Refunded = 4,
-  Cancelled = 5,
+  Processing = 2,
+  Successful = 3,
+  Failed = 4,
+  Refunded = 5,
+  Cancelled = 6,
 }
