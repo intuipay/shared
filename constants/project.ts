@@ -1,0 +1,61 @@
+export enum ProjectStatus {
+  Draft = 1,
+  Review,
+  Rejected,
+  Reopened,
+  Approved,
+  Active = 10,
+  Cancelled,
+  Suspended,
+  Completed = 20,
+  PaymentPending,
+  PaymentFailed,
+  PaymentSuccessful,
+  PaymentRefunded,
+  PaymentCancelled,
+  Archived = 100,
+}
+
+export enum ProjectCategories {
+  'Addiction Recovery' = 1,
+  Animals = 2,
+  'Arts & Culture' = 3,
+  'Children & Youth' = 4,
+  'Community Foundations' = 5,
+  'Community Service' = 6,
+  'Developmental Disabilities' = 7,
+  'Disaster Response' = 8,
+  'Education & Training' = 9,
+  Environment = 10,
+  'First Responders & Veterans' = 11,
+  'Health & Medical' = 12,
+  'Higher Education' = 13,
+  'Homelessness' = 14,
+  'Human Rights' = 15,
+  'Hunger' = 16,
+  'Immigration & Refugees' = 17,
+  'International Development' = 18,
+  'Legal Support' = 19,
+  'LGBTQ' = 20,
+  'Racial Justice' = 21,
+  'Religion and Faith Based' = 22,
+  'Technology' = 23,
+  'Water & Hygiene' = 24,
+  'Women & Girls' = 25,
+  Other = 255,
+}
+
+export enum ProjectTypes {
+  'Non-Profit / Academic Research' = 1,
+  'For-Profit Research' = 2,
+  'Government-Funded Research' = 3,
+  'Philanthropic Research' = 4,
+  'Crowdsourced / Open Science' = 5,
+  Widget = 100,
+}
+
+export enum AcceptMethod {
+  Crypto = 1,
+  Cash = 2,
+  'Both crypto and cash' = 3,
+}
