@@ -1,6 +1,6 @@
 import { DonationStatus, AcceptMethod } from '../constants';
 
-// 获取状态显示文本和样式
+// convert donation status to display text and style
 export const getStatusDisplay = (status: number | string) => {
   const statusNum = typeof status === 'string' ? parseInt(status) : status;
   
@@ -43,7 +43,7 @@ export const getStatusDisplay = (status: number | string) => {
   }
 };
 
-// 获取支付方式显示文本
+// convert accept method to display text
 export const getMethodDisplay = (method: number | string) => {
   const methodNum = typeof method === 'string' ? parseInt(method) : method;
   
