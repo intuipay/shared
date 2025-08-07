@@ -8,3 +8,11 @@ export enum OrganizationType {
   Self = 150,
   Other = 200,
 }
+
+export enum OrganizationPermission {
+  User = 1,
+  Editor = 2,
+  Payer = 10,
+  Admin = 50,
+  Owner = 100,
+}
