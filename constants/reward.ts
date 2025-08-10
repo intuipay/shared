@@ -4,7 +4,7 @@ export enum RewardType {
 }
 
 export enum RewardShipMethod {
-  ByMyself = 1,
-  LocalPickup = 2,
-  Digital = 3,
+  'Ships by myself' = 1,
+  'Local pickup, event, or service' = 2,
+  'Digital method' = 3,
 }
