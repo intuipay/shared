@@ -43,6 +43,7 @@ export enum ProjectCategories {
   'Technology' = 23,
   'Water & Hygiene' = 24,
   'Women & Girls' = 25,
+  Media = 26,
   Other = 255,
 }
 

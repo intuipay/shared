@@ -6,3 +6,8 @@ export enum DonationStatus {
   Refunded = 5,
   Cancelled = 6,
 }
+
+export enum DonationAccountType {
+  Crypto = 1,
+  Cash = 2,
+}
