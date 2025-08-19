@@ -32,7 +32,7 @@ export type OrganizationInfo = {
   balance: string;
 }
 
-export type ProjectInfo = {
+export type ProjectBase = {
   id: number;
   project_slug: string;
   project_subtitle: string;
@@ -42,6 +42,7 @@ export type ProjectInfo = {
   banners: string;
   campaign: string;
   category: ProjectCategories;
+  description?: string;
   email: string;
   end_at: string;
   github: string;
@@ -57,9 +58,7 @@ export type ProjectInfo = {
   org_type: string;
   org_website: string;
   project_name: string;
-  social_links: Record<string, string>;
   status: ProjectStatus;
-  tags: string[];
   type: ProjectTypes;
   website: string;
   backers: number;
@@ -73,6 +72,20 @@ export type ProjectInfo = {
   deleted_at?: string;
   updated_at: string;
   published_at: string;
+}
+export type ProjectRemote = ProjectBase & {
+  network: string;
+  social_links: string; // stringified JSON object
+  tags: string; // stringified JSON array
+  token: string;
+  wallet: string;
+}
+export type ProjectInfo = ProjectBase & {
+  networks: string[];
+  social_links: Record<string, string>;
+  tags: string[];
+  tokens: Record<string, string[]>
+  wallets: Record<string, string>;
 
   isDeleting?: boolean;
 }
