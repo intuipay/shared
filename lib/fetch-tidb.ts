@@ -5,6 +5,7 @@ export async function fetchTidb<T>(
   method: string = 'GET',
   body?: unknown,
   env?: Record<string, string>,
+  options?: RequestInit,
 ): Promise<T[]> {
   const {
     NODE_ENV,
@@ -20,16 +21,17 @@ export async function fetchTidb<T>(
     },
     method,
     ...(body ? { body: JSON.stringify(body) } : {}),
+    ...options,
   });
 
+  if (NODE_ENV !== 'production') {
+    console.log('URL', url);
+    console.log('Body', body);
+  }
   if (!response.ok) {
-    if (NODE_ENV !== 'production') {
-      console.log('URL', url);
-      console.log('Body', body);
-    }
     throw new Error(`HTTP error. status: ${response.status}`);
   }
 
   const result = (await response.json()) as TiDBDataServiceResponse<T>;
-  return result.data.rows;
+  return result.data.rows as T[];
 }

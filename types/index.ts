@@ -74,11 +74,11 @@ export type ProjectBase = {
   published_at: string;
 }
 export type ProjectRemote = ProjectBase & {
-  network: string;
+  networks: string;
   social_links: string; // stringified JSON object
   tags: string; // stringified JSON array
-  token: string;
-  wallet: string;
+  tokens: string;
+  wallets: string;
 }
 export type ProjectInfo = ProjectBase & {
   networks: string[];
