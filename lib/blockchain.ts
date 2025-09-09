@@ -9,6 +9,7 @@ export interface NetworkConfig {
   type: 'evm' | 'solana'; // 网络类型
   fundsDividerContract?: string; // 手续费分配合约地址
   crowdfundingContract?: string; // 众筹合约地址（按网络）
+  certNftContract?: string; // 证书NFT合约地址（按网络）
 }
 
 // 钱包配置
@@ -50,6 +51,7 @@ export const BLOCKCHAIN_CONFIG = {
       type: 'evm',
       fundsDividerContract: '0xfEeC3028Af62B78E0D54F650063E1800Ac7Dfd98',
       crowdfundingContract: '0xce714E8190a22E1475aaF01D904eb34502FC3904',
+      certNftContract: '0x98Ecf55377021Fd4600039DC778ce821296666Ed'
     } as NetworkConfig,
     'ethereum-mainnet': {
       id: 'ethereum-mainnet',
@@ -91,6 +93,7 @@ export const BLOCKCHAIN_CONFIG = {
       type: 'evm',
       // fundsDividerContract: '', // TODO: Deploy contract on pharos testnet
       crowdfundingContract: '0x543B59955cEb03169EcbF8eE63312a5258212098',
+      certNftContract: '0x17c8094Df518a6a0a398f19F7d3b38f96D5b2E9F'
     } as NetworkConfig,
     'edu-testnet': {
       id: 'edu-testnet',
@@ -103,6 +106,7 @@ export const BLOCKCHAIN_CONFIG = {
       type: 'evm',
       // fundsDividerContract: '', // TODO: Deploy contract on pharos testnet
       crowdfundingContract: '0xF7db74785A2e3991627996A84AC72B9310b24951',
+      certNftContract: '0x3D1586E0eE90a459C4c6d94644603a0F10aecae1'
     } as NetworkConfig,
   },
 
@@ -149,11 +153,11 @@ export const BLOCKCHAIN_CONFIG = {
       networks: [
         {
           networkId: 'ethereum-sepolia',
-          contractAddress: '0x94a9D9AC8a22534E3FaCa9F4e7F2E2cf85d5E4C8', // USDC on Sepolia testnet
+          contractAddress: '0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238', // https://developers.circle.com/stablecoins/usdc-contract-addresses
         },
         {
           networkId: 'ethereum-mainnet',
-          contractAddress: '0xA0b86a33E6441e16174B7d45cfE8b84D5bF4E5F1', // USDC on Ethereum mainnet
+          contractAddress: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', // USDC on Ethereum mainnet
         },
         {
           networkId: 'pharos-testnet',
@@ -161,7 +165,7 @@ export const BLOCKCHAIN_CONFIG = {
         },
         {
           networkId: 'solana-devnet',
-          contractAddress: 'Gh9ZwEmdLJ8DscKNTkTqPbNwLNNBjuSzaG9Vp2KGtKJr', // USDC-Dev on Solana Devnet, not circle's USDC
+          contractAddress: '4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU', // USDC-Dev on Solana Devnet, not circle's USDC
         },
         {
           networkId: 'solana-mainnet',
@@ -169,7 +173,7 @@ export const BLOCKCHAIN_CONFIG = {
         },
         {
           networkId: 'edu-testnet',
-          contractAddress: '0x19EeaDcBA1801Afec43e87Cefcd4239E13fc294d', // USDC on Solana Mainnet
+          contractAddress: '0x19EeaDcBA1801Afec43e87Cefcd4239E13fc294d',
         }
       ],
     } as CryptoCurrencyConfig,
