@@ -1,4 +1,4 @@
-import { TiDBDataServiceResponse } from "../types";
+import { TiDBDataServiceResponse } from '../types';
 
 export async function fetchTidb<T>(
   url: string | URL,
