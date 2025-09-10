@@ -1,3 +1,5 @@
+import { ProjectTypes } from '../constants';
+
 export interface NetworkConfig {
   id: string;
   name: string;
@@ -51,7 +53,7 @@ export const BLOCKCHAIN_CONFIG = {
       type: 'evm',
       fundsDividerContract: '0xfEeC3028Af62B78E0D54F650063E1800Ac7Dfd98',
       crowdfundingContract: '0xce714E8190a22E1475aaF01D904eb34502FC3904',
-      certNftContract: '0x98Ecf55377021Fd4600039DC778ce821296666Ed'
+      certNftContract: '0x98Ecf55377021Fd4600039DC778ce821296666Ed',
     } as NetworkConfig,
     'ethereum-mainnet': {
       id: 'ethereum-mainnet',
@@ -93,7 +95,7 @@ export const BLOCKCHAIN_CONFIG = {
       type: 'evm',
       // fundsDividerContract: '', // TODO: Deploy contract on pharos testnet
       crowdfundingContract: '0x543B59955cEb03169EcbF8eE63312a5258212098',
-      certNftContract: '0x17c8094Df518a6a0a398f19F7d3b38f96D5b2E9F'
+      certNftContract: '0x17c8094Df518a6a0a398f19F7d3b38f96D5b2E9F',
     } as NetworkConfig,
     'edu-testnet': {
       id: 'edu-testnet',
@@ -106,7 +108,7 @@ export const BLOCKCHAIN_CONFIG = {
       type: 'evm',
       // fundsDividerContract: '', // TODO: Deploy contract on pharos testnet
       crowdfundingContract: '0xF7db74785A2e3991627996A84AC72B9310b24951',
-      certNftContract: '0x3D1586E0eE90a459C4c6d94644603a0F10aecae1'
+      certNftContract: '0x3D1586E0eE90a459C4c6d94644603a0F10aecae1',
     } as NetworkConfig,
   },
 
@@ -174,7 +176,7 @@ export const BLOCKCHAIN_CONFIG = {
         {
           networkId: 'edu-testnet',
           contractAddress: '0x19EeaDcBA1801Afec43e87Cefcd4239E13fc294d',
-        }
+        },
       ],
     } as CryptoCurrencyConfig,
     sol: {
@@ -241,7 +243,7 @@ export const BLOCKCHAIN_CONFIG = {
 } as const;
 
 export function getExplorerUrl(networkId: string, txHash: string): string {
-  const network = BLOCKCHAIN_CONFIG.networks[networkId as keyof typeof BLOCKCHAIN_CONFIG.networks];
+  const network = BLOCKCHAIN_CONFIG.networks[ networkId as keyof typeof BLOCKCHAIN_CONFIG.networks ];
   if (!network) return '';
 
   if (network.type === 'solana') {
@@ -250,4 +252,27 @@ export function getExplorerUrl(networkId: string, txHash: string): string {
   } else {
     return `${network.explorerUrl}/tx/${txHash}`;
   }
+}
+
+export function getProjectCurrency(
+  type: ProjectTypes,
+  tokens: string | string[],
+  networks: string | Record<string, string[]>,
+): { symbol: string; decimals: number } | null {
+  if (type !== ProjectTypes.Crowdfunding) {
+    return { symbol: 'USD', decimals: 2 };
+  }
+
+  tokens = (tokens && typeof tokens === 'string') ? JSON.parse(tokens) : tokens;
+  networks = (networks && typeof networks === 'string') ? JSON.parse(networks) : networks;
+  const networkKey = Array.isArray(networks) && networks.length > 0 ? networks[ 0 ] : undefined;
+  const tokenArr = networkKey && tokens && Array.isArray(tokens[ networkKey ]) ? tokens[ networkKey ] : undefined;
+  const tokenId = tokenArr && tokenArr.length > 0 ? tokenArr[ 0 ] : 'usdc';
+  const selectedCurrency = tokenId
+    ? BLOCKCHAIN_CONFIG
+        .currencies[ tokenId as keyof typeof BLOCKCHAIN_CONFIG.currencies ]
+    : null;
+  return selectedCurrency
+    ? { symbol: selectedCurrency.symbol, decimals: selectedCurrency.decimals }
+    : null;
 }

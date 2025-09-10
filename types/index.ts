@@ -3,7 +3,7 @@ import {
   ProjectCategories,
   ProjectStatus,
   ProjectTypes,
-} from "../constants";
+} from '../constants';
 
 export type ApiResponse<T> = {
   code: number;
